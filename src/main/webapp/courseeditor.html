@@ -87,44 +87,101 @@
 		</nav>
 <div class="container-fluid">
     <div class="row">
-    <div class="col-sm-2 col-md-3 sidebar">
+    <div class="col-2 sidebar h-100">
     <form class="pure-form" action="finddesktop" method="post">
         <br/>
         <br/>
         <p>
-            <a id="createcomment" class="pure-button pure-button-primary" href="#" role="button">Module 1</a>
+            <a id="1" class="pure-button pure-button-primary" href="#" role="button">Module 1</a>
         </p>
         <p>
-            <a id="createcomment" class="pure-button pure-button-primary" href="#" role="button">Module 1</a>
+            <a id="2" class="pure-button pure-button-primary" href="#" role="button">Module 2</a>
         </p>
         <p>
-            <a id="createcomment" class="pure-button pure-button-primary" href="#" role="button">Module 1</a>
+            <a id="3" class="pure-button pure-button-primary" href="#" role="button">Module 3</a>
         </p>
         <p>
-            <a id="createcomment" class="pure-button pure-button-primary" href="#" role="button">Module 1</a>
+            <a id="4" class="pure-button pure-button-primary" href="#" role="button">Module 4</a>
         </p>
         <p>
-            <a id="createcomment" class="pure-button pure-button-primary" href="#" role="button">Module 1</a>
+            <a id="5" class="pure-button pure-button-primary" href="#" role="button">Module 5</a>
                     </p>
     </form>
     </div>
-    <div  class="col-sm-offset-3 col-md-offset-2 main">
-    <div class="table-responsize">
-        <table class="table table-striped">
-            <tr>
-                <th>placeholder1</th>
-                <th>placeholder2</th>
-                <th>placeholder3</th>
-                <th>placeholder4</th>
-                <th>placeholder5</th>
-                <th>placeholder6</th>
-                <th>placeholder7</th>
-                <th>placeholder8</th>
-            </tr>
-       </table>
-       </div>
-       </div>
+    <div  class="col-10 main">
+    <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Topic 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Topic 2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Topic 3</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Topic 4</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Add</a>
+                </li>
+            </ul>
+       
+       <div class="card shadow-sm col-md-9 offset-md-1 ">
+                    <h1>Header</h1>
+                    <select>
+                        <option>Header</option>
+                        <option>Paragraph</option>
+                        <option>Image</option>
+                    </select>
+                    <span class="fa-stack fa-2x wd-bottom-right">
+                    </span>                    
+                <input class="form-control" placeholder="header"></input>
+                <select class="form-control">
+                    <option>heading 1</option>
+                    <option>heading 2</option>
+                    <option>heading 3</option>
+                </select>
+                <input class="form-control" placeholder="widget name"/>
+                <p>Preview</p>
+                <p>Heading Text</p>
+            </div>
+        <div class="card shadow-sm col-md-9 offset-md-1 ">
+                    <h1>List</h1>
+                    <select>
+                        <option>Unordered list</option>
+                        <option>Ordered list</option>
+                    </select>
+                    <span class="fa-stack fa-2x wd-bottom-right">
+                    </span>   
+                    <textarea class="form-control" 
+                            placeholder="Put each item in new line"></textarea>                   
+                <input class="form-control" placeholder="Widget name"></input>
+                <p>Preview</p>
+                <ul>
+                    <li>Put each</li>
+                    <li>item</li>
+                    <li>in new line</li>
+                </ul>
+                  </div>
+                <div class="card shadow-sm col-md-9 offset-md-1 ">
+                    <h1>Image</h1>
+                <input class="form-control" placeholder="www.amazon.com"></input>                    
+                <input class="form-control" placeholder="Widget name"></input>
+                <p>Preview</p>
+            </div>    
+            <div class="card shadow-sm col-md-9 offset-md-1 ">
+                    <h1>Link</h1>
+                    <input class="form-control" placeholder="www.amazon.com"></input>             
+                    <input class="form-control" placeholder="Link text"></input>              
+                <input class="form-control" placeholder="Widget name"></input>
+                <p>Preview</p>
+                <a id="link" class="pure-button pure-button-primary" href="#" role="button">Link</a>
+                  </div>
+     
+    
      </div>
+
      </div>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
