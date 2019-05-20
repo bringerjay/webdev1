@@ -1,0 +1,17 @@
+.row {
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+} 
+.custom-select{
+	width: 300px;
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.add-on{
+	height: 40px;
+}
+	

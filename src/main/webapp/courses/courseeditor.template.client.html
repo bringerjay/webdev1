@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="courseeditor.style.client.css"/>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+	integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+	crossorigin="anonymous">
+</head>
+  <body>
+  <nav class="navbar navbar-dark bg-dark">
+				<div class="navbar-header">	
+					<a class="navbar-brand" href="#">Course A</a>
+				</div>			
+							<a href="#">Build</a>
+							<a href="#">Pages</a>
+							<a href="#">Theme</a>
+                            <a href="#">Store</a>
+                            <a href="#">Apps</a>
+                            <a href="#">Settings</a>
+
+		</nav>
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-2 sidebar h-100">
+    <form class="pure-form" action="finddesktop" method="post">
+        <br/>
+        <br/>
+        <p>
+            <a id="1" class="pure-button pure-button-primary" href="#" role="button">Module 1</a>
+        </p>
+        <p>
+            <a id="2" class="pure-button pure-button-primary" href="#" role="button">Module 2</a>
+        </p>
+        <p>
+            <a id="3" class="pure-button pure-button-primary" href="#" role="button">Module 3</a>
+        </p>
+        <p>
+            <a id="4" class="pure-button pure-button-primary" href="#" role="button">Module 4</a>
+        </p>
+        <p>
+            <a id="5" class="pure-button pure-button-primary" href="#" role="button">Module 5</a>
+                    </p>
+    </form>
+    </div>
+    <div  class="col-10 main">
+    <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Topic 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Topic 2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Topic 3</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Topic 4</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Add</a>
+                </li>
+            </ul>
+       
+       <div class="card shadow-sm col-md-9 offset-md-1 ">
+               <div class="row">
+                    <h1>Header</h1>
+                    <span class="widget-operations style="white-space: nowrap"">
+                    <i id="go-up"class="fa-2x fa fa-arrow-circle-up" aria-hidden="true"></i>
+                    <i id="go-down"class="fa-2x fa fa-arrow-circle-down" aria-hidden="true"></i>
+                    <select>
+                        <option>Header</option>
+                        <option>Paragraph</option>
+                        <option>Image</option>
+                    </select> 
+					<i id="wbdv-remove" class="fa-2x fa fa-times wbdv-remove"></i> 
+					<i id="wbdv-edit" class="fa-2x fas fa-pencil-alt"></i>
+					</span>
+					</div>
+                                      
+                <input class="form-control" placeholder="header"></input>
+                <select class="form-control col-3">
+                    <option>heading 1</option>
+                    <option>heading 2</option>
+                    <option>heading 3</option>
+                </select>
+                <input class="form-control" placeholder="widget name"/>
+                <p>Preview</p>
+                <p>Heading Text</p>
+            </div>
+        <div class="card shadow-sm col-md-9 offset-md-1 ">
+        <div class="row">
+                    <h1>List</h1>
+                    <span class="widget-operations style="white-space: nowrap"">
+                    <i id="go-up"class="fa-2x fa fa-arrow-circle-up" aria-hidden="true"></i>
+                    <i id="go-down"class="fa-2x fa fa-arrow-circle-down" aria-hidden="true"></i>
+                    <select>
+                        <option>Unordered list</option>
+                        <option>Ordered list</option>
+                    </select>
+					<i id="wbdv-remove" class="fa-2x fa fa-times wbdv-remove"></i> 
+					<i id="wbdv-edit" class="fa-2x fas fa-pencil-alt"></i>
+					</span>
+					</div>
+                      
+                    <textarea class="form-control" 
+                            placeholder="Put each item in new line"></textarea>                   
+                <input class="form-control" placeholder="Widget name"></input>
+                <p>Preview</p>
+                <ul>
+                    <li>Put each</li>
+                    <li>item</li>
+                    <li>in new line</li>
+                </ul>
+                  </div>
+                <div class="card shadow-sm col-md-9 offset-md-1 ">
+               <div class="row">
+                    <h1>Image</h1>
+                    <span class="widget-operations style="white-space: nowrap"">
+                    <i id="go-up"class="fa-2x fa fa-arrow-circle-up" aria-hidden="true"></i>
+                    <i id="go-down"class="fa-2x fa fa-arrow-circle-down" aria-hidden="true"></i>
+					<i id="wbdv-remove" class="fa-2x fa fa-times wbdv-remove"></i> 
+					<i id="wbdv-edit" class="fa-2x fas fa-pencil-alt"></i>
+					</span>
+					</div>
+                <input class="form-control" placeholder="www.amazon.com"></input>                    
+                <input class="form-control" placeholder="Widget name"></input>
+                <p>Preview</p>
+                <img src="Redmond.jpg" class="img-fluid" alt="Responsive image">
+            </div>    
+            <div class="card shadow-sm col-md-9 offset-md-1 ">
+            <div class="row">
+                    <h1>Link</h1>
+                    <span class="widget-operations style="white-space: nowrap"">
+                    <i id="go-up"class="fa-2x fa fa-arrow-circle-up" aria-hidden="true"></i>
+                    <i id="go-down"class="fa-2x fa fa-arrow-circle-down" aria-hidden="true"></i>
+					<i id="wbdv-remove" class="fa-2x fa fa-times wbdv-remove"></i> 
+					<i id="wbdv-edit" class="fa-2x fas fa-pencil-alt"></i>
+					</span>
+					</div>
+                    <input class="form-control" placeholder="www.amazon.com"></input>             
+                    <input class="form-control" placeholder="Link text"></input>              
+                <input class="form-control" placeholder="Widget name"></input>
+                <p>Preview</p>
+                <a id="link" class="pure-button pure-button-primary" href="#" role="button">Link</a>
+                  </div>
+     
+    
+     </div>
+     </div>  
+     </div>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
