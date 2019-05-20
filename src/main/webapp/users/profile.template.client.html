@@ -42,7 +42,7 @@
      </div>
      </div>
      <div class="form-group row">
-            <label for="role" class="col-2">Role</label>
+            <label for="role" class="col-form-label col-2">Role</label>
             <select class="custom-select d-block" id="role" required>
               <option value="">Choose...</option>
               <option>Faculty</option>
@@ -52,19 +52,17 @@
             <div class="invalid-feedback">
               Please select a valid country.
             </div>
+                </div>
     <div class="form-group row">
-    <label for="date" class="col-form-label class="col-2"">
+    <label for="date" class="col-form-label col-2">
        Date of Birth </label>
-    <div class="date-pick row">
-    <div id="datetimepicker4" class="input-append"> 
+    <div id="datetimepicker4" class="input-append col-8"> 
                 <input data-format="yyyy-MM-dd" type="text"></input> 
                 <span class="add-on"> 
                     <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> 
                 </span> 
             </div>
-            </div> 
         </div> 
-    </div>
  </form>
 </div>
 
@@ -95,6 +93,4 @@
                 $('#datetimepicker4').datetimepicker({pickTime: false});
             });
         </script>  
-        </div>  
-
 </html>
