@@ -4,6 +4,7 @@ function AdminUserServiceClient() {
     this.findUserById = findUserById;
     this.deleteUser = deleteUser;
     this.updateUser = updateUser;
+    this.findUserByUsername = findUserByUsername;
     this.url = '/api/users';
     var self = this;
     function createUser(user) {
@@ -17,13 +18,19 @@ function AdminUserServiceClient() {
         });
     }
     function findAllUsers() {
-        return fetch(this.url)
+        return fetch('/api/users')
             .then(function(response) {
                 return response.json();
             });
     }
     function findUserById(userId) {
         return fetch('/api/user/'+userId).then(function(response) {
+            return response.json();
+        });
+    
+    }
+    function findUserByUsername(userName) {
+        return fetch('/api/user/username/'+userName).then(function(response) {
             return response.json();
         });
     

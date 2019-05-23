@@ -1,8 +1,11 @@
 package webdev1.controller;
 import webdev1.model.*;
 
-
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -15,33 +18,93 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import jdk.javadoc.internal.doclets.formats.html.markup.HtmlAttr.Role;
+
 @RestController
-public class UserService {
-	User alice = new User(1, "alice", "rabit", "Alice", "Wonderland");
-	User bob   = new User(2, "bob", "love", "Bob", "abcd");
-	User lee   = new User(3, "lee", "love", "Lee", "bcde");
-	User lin   = new User(4, "lin", "love", "Lin", "cdeg");
-	User chris   = new User(5, "chris", "love", "Chris", "hijk");
-	User xiao   = new User(6, "xiao", "love", "Xiao", "hello");
-	User rob   = new User(7, "rob", "love", "Rob", "kitty");
+public class UserService{
 	static List<User> users = new ArrayList<User>();
 	{
-	    users.add(alice);
-	    users.add(bob);
-	    users.add(lee);
-	    users.add(lin);
-	    users.add(chris);
-	    users.add(xiao);
-	    users.add(rob);
-	};
+	List<Course> list1=new ArrayList<Course>();	
+	List<Course> list2=new ArrayList<Course>();	
+	List<Course> list3=new ArrayList<Course>();	
+	List<Course> list4=new ArrayList<Course>();	
+	List<Course> list5=new ArrayList<Course>();	
+	List<Course> list6=new ArrayList<Course>();	
+	List<Course> list7=new ArrayList<Course>();	
+	SimpleDateFormat format = new SimpleDateFormat( "MM/dd/yyyy" );  // United States style of format. 
+	Date date1 = new Date();
+	Date date2 = new Date();
+	Date date3 = new Date();
+	Date date4 = new Date();
+	Date date5 = new Date();
+	Date date6 = new Date();
+	Date date7 = new Date();
+	try {
+	 date1 = format.parse("10/10/1989");
+	 date2 = format.parse("10/10/1989");
+	 date3 = format.parse("10/10/1989");
+	 date4 = format.parse("10/10/1989");
+	 date5 = format.parse("10/10/1989");
+	 date6 = format.parse("10/10/1989");
+	 date7 = format.parse("10/10/1989");
+	webdev1.model.User.Role role1 = webdev1.model.User.Role.valueOf("Faculty");
+	webdev1.model.User.Role role2 = webdev1.model.User.Role.valueOf("Student");
+	webdev1.model.User.Role role3 = webdev1.model.User.Role.valueOf("Faculty");
+	webdev1.model.User.Role role4 = webdev1.model.User.Role.valueOf("Student");
+	webdev1.model.User.Role role5 = webdev1.model.User.Role.valueOf("Faculty");
+	webdev1.model.User.Role role6 = webdev1.model.User.Role.valueOf("Faculty");
+	webdev1.model.User.Role role7 = webdev1.model.User.Role.valueOf("Admin");	
+	User alice = new User(1, "alice", "rabit", "Alice", "Wonderland",role1,date1,list1);
+	User bob   = new User(2, "bob", "love", "Bob", "abcd",role2,date2,list2);
+	User lee   = new User(3, "lee", "love", "Lee", "bcde",role3,date3,list3);
+	User lin   = new User(4, "lin", "love", "Lin", "cdeg",role4,date4,list4);
+	User chris   = new User(5, "chris", "love", "Chris", "hijk",role5,date5,list5);
+	User xiao   = new User(6, "xiao", "love", "Xiao", "hello",role6,date6,list6);
+	User rob   = new User(7, "rob", "love", "Rob", "kitty",role7,date7,list7);
+	users.add(alice);
+    users.add(bob);
+    users.add(lee);
+    users.add(lin);
+    users.add(chris);
+    users.add(xiao);
+    users.add(rob);} catch (ParseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	finally {}    }
+    int check;
+	     
 	@GetMapping("/api/users")
 	public List<User> findAllUsers(){
 		return users;
 	}
 	@PostMapping("/api/users")
 	public List<User> createUser(@RequestBody User user){
+		check = 0;
+		int a = users.size();
+		for(int m=0;m<a ;m++) {
+		if(users.get(m).getUsername().equals(user.getUsername()))
+		{ 
+		check = 1;
+		}}
+		if(check == 1)
+		{
+			return null;
+		}
+		else{
+		String r1 = "STUDENT";
+		String r2 = "FACULTY";
+		String r3 = "ADMIN";
+		webdev1.model.User.Role role1 = webdev1.model.User.Role.valueOf("Student");
+		webdev1.model.User.Role role2 = webdev1.model.User.Role.valueOf("Faculty");
+		webdev1.model.User.Role role3 = webdev1.model.User.Role.valueOf("Admin");
+        if (user.getRole().toString().equals(r1))
+        {user.setRole(role1);}
+        else if(user.getRole().toString().equals(r2))
+        {user.setRole(role2);}
+        else {user.setRole(role3);}
 		users.add(user);
-		return users;
+		return users;}
 	}
 	@PostMapping("/api/users/delete/{userId}")
 	public List<User> deleteUser(@PathVariable("userId") Integer id){
@@ -90,11 +153,21 @@ public class UserService {
 		}
 		return null;
 	}
+	@GetMapping("/api/user/username/{username}")
+	public User findUserByUserName(
+			@PathVariable("username") String username) {
+		for(User user: users) {
+			if(username.equals(user.getUsername().toString()))
+				return user;
+		}
+		return null;
+	}
 	@GetMapping("/api/user/update/{username}/{firstName}/{lastName}/{password}")
     public User updateUser(@PathVariable("username") String username, @PathVariable("firstName") String firstName,
     		@PathVariable("lastName") String lastName,@PathVariable("password") String password) {
 		int f = 0;
-		for(int i=0;i< users.size()-1;i++) {
+		int a = users.size();
+		for(int i=0;i<a ;i++) {
 			if(users.get(i).getUsername().equals(username))
 			{
 			//String firsName = users.get(users.size()-1).getFirstName();

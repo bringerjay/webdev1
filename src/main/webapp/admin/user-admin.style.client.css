@@ -10,15 +10,11 @@
     margin-right: 5px;
     cursor: pointer;
     }
-    .wbdv-edit{
-    margin-right: 5px;
-    cursor: pointer;
-    }
     .wbdv-update{
     margin-right: 5px;
     cursor: pointer;
     }
-    .wbdv-find{
+    .wbdv-search{
     margin-right: 5px;
     cursor: pointer;
     }
@@ -26,3 +22,7 @@
     margin-right: 5px;
     cursor: pointer;
     }
+    .wbdv-check{
+    margin-right: 5px;
+    cursor: pointer;
+}

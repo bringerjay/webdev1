@@ -13,8 +13,17 @@ public class User {
 	private Date dOB;
 	private List<Course> authoredCourses;
 	public enum Role {
-Faculty,Student,Admin}
+Faculty,Student,Admin,FACULTY,STUDENT,ADMIN}
 	
+	public User(Integer id, String username, String password, String firstName, String lastName, Role role) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.role = role;
+	}
 	public User(Integer id, String username, String password, String firstName, String lastName, Role role, Date dOB,
 			List<Course> authoredCourses) {
 		super();
