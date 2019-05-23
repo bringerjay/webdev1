@@ -4,10 +4,10 @@ function AdminUserServiceClient() {
     this.findUserById = findUserById;
     this.deleteUser = deleteUser;
     this.updateUser = updateUser;
-    this.url = 'http://localhost:8080/api/users';
+    this.url = '/api/users';
     var self = this;
     function createUser(user) {
-        return fetch('http://localhost:8080/api/users',{
+        return fetch('/api/users',{
         	method: 'POST',
         	body: JSON.stringify(user),
         	headers: {'content-type': 'application/json'}
@@ -45,7 +45,7 @@ function AdminUserServiceClient() {
     }
     //how to use int or string to fetch
     function deleteUser(userId) {
-        return fetch('http://localhost:8080/api/users/delete/' + userId,{
+        return fetch('/api/users/delete/' + userId,{
             method: 'POST',
             body: JSON.stringify(userId),
             headers: {'content-type': 'application/json'}
