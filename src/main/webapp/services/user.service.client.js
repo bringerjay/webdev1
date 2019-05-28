@@ -53,7 +53,7 @@ function AdminUserServiceClient() {
     //how to use int or string to fetch
     function deleteUser(userId) {
         return fetch('/api/users/delete/' + userId,{
-            method: 'POST',
+            method: 'Delete',
             body: JSON.stringify(userId),
             headers: {'content-type': 'application/json'}
         }).then(function(response) {

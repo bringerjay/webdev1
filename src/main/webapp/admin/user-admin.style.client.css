@@ -9,20 +9,32 @@
     .wbdv-remove{
     margin-right: 5px;
     cursor: pointer;
+        color: black;
     }
     .wbdv-update{
     margin-right: 5px;
     cursor: pointer;
+        color: crimson;
     }
     .wbdv-search{
     margin-right: 5px;
     cursor: pointer;
+        color: #66ffff;
     }
     .wbdv-create{
     margin-right: 5px;
     cursor: pointer;
+        color: lawngreen;
     }
     .wbdv-check{
     margin-right: 5px;
     cursor: pointer;
+        color: blueviolet;
+    }
+h3{
+    margin-top: 30px;
+    margin-bottom: 50px;
+    margin-left: 100px;
+    width: 90%;
+    background-color: lawngreen;
 }

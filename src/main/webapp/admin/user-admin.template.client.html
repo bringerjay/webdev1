@@ -20,19 +20,23 @@
 </head>
 <body>
 <h1>User Admin</h1>
-<<ul>
-    <li>Update does update on firstName and lastName, you have to input username, password, firstname, lastname to update. username have to match what we have in the system</li>
+<h3>
+<ul>
+    <li>Check does the update; Amplifier does the search; + does the create; pencil does the detail; x does the deleteion</li>
+    <li>Update does update on firstName and lastName, you have to input username, password, firstname, lastname to update. username have to match what we have in the system. No check on password yet is implemented but you still has to input</li>
+    <li>Updates wil navigate to single user record</li>
     <li>Click on the pencil button will see more detail of a user</li>
-    <li>Search uses the username as there is no userId displayed. Password and DOB are hidden for confidential.</li>
+    <li>User can't create or update ID, they get assigned one</li>
+    <li>Search uses the User ID but ID has to exist for the page to react at the moment. Password and DOB are hidden for confidential.</li>
     <li>User has to been created under distinct username. Otherwise it won't be written into data.</li>
-
-
 </ul>
+</h3>
 
 <div class="container-fluid">
-    <table class="table">
+    <table id="wbdv-form" class="table table-striped">
         <thead>
         <tr>
+            <th>UserID</th>
             <th>Username</th>
             <th>Password</th>
             <th>First Name</th>
@@ -41,7 +45,9 @@
             <th>DOB</th>
             <th></th>
         </tr>
-        <tr class="wbdv-form">
+        <tr class="wbdv-form form">
+            <td><input class="form-control" id="userIdFld"
+                       placeholder="UserId"/></td>
             <td><input class="form-control" id="usernameFld"
                        placeholder="Username"/></td>
             <td><input class="form-control" id="passwordFld"
@@ -55,7 +61,7 @@
                 <option value="STUDENT">Student</option>
                 <option value="ADMIN">Admin</option>
             </select></td>
-            <td><input class="form-control" id="date" type="date"/></td>
+            <td><input class="form-control" id="dateFld" type="date"/></td>
             <td><span class="float-right wbdv-create" style="white-space: nowrap">
                     <i class="fa-2x fa fa-plus"></i></span>
                 <span class="float-right wbdv-update" style="white-space: nowrap"><i
@@ -66,7 +72,8 @@
   </span></td>
         </tr>
         <tbody class="wbdv-tbody">
-        <tr id="0" class="wbdv-template wbdv-user wbdv-hidden">
+        <tr class="wbdv-template wbdv-user wbdv-hidden">
+            <td class="wbdv-userId">ID</td>
             <td class="wbdv-username">ada</td>
              <td class="wbdv-password"> secret </td>
             <td class="wbdv-first-name">Ada</td>

@@ -1,5 +1,7 @@
 package webdev1.controller;
 import webdev1.model.*;
+
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserService{
+	static int latestId = 7;
 	static List<User> users = new ArrayList<User>();
 	{
 	List<Course> list1=new ArrayList<Course>();	
@@ -85,6 +88,8 @@ public class UserService{
 			return null;
 		}
 		else{
+	    latestId++;
+		user.setId(latestId);
 		String r1 = "STUDENT";
 		String r2 = "FACULTY";
 		String r3 = "ADMIN";
@@ -99,7 +104,7 @@ public class UserService{
 		users.add(user);
 		return users;}
 	}
-	@PostMapping("/api/users/delete/{userId}")
+	@DeleteMapping("/api/users/delete/{userId}")
 	public List<User> deleteUser(@PathVariable("userId") Integer id){
 		ListIterator<User> userlist = users.listIterator();
 		while(userlist.hasNext()){
