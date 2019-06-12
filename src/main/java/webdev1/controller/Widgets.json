@@ -1,0 +1,22 @@
+[
+{id: 1,
+ name: "Widget1",
+ type: "Heading"
+},
+{id: 2,
+ name: "Widget2",
+ type: "Paragraph"
+},
+{id: 3,
+ name: "Widget3",
+ type: "Heading"
+},
+{id: 4,
+ name: "Widget4",
+ type: "Heading"
+},
+{id: 5,
+ name: "Widget5",
+ type: "Heading"
+}
+]
