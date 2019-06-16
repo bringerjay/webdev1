@@ -18,7 +18,7 @@ public class WidgetController{
 public Integer idTracker = 6;
 static List<Widget> widgets = new ArrayList<Widget>();
 static {
-    String[] l1 = new String[20];
+    String[] l1 = new String[3];
     l1[0] = "Cheese";
     l1[1] = "Pepperoni";
     l1[2] = "Black Olives";
