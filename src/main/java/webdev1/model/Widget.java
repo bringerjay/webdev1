@@ -10,28 +10,32 @@ public class Widget {
 	private String text;
 	private String list;
 	private String url;
-	public Widget(Integer id, String name, String type, String size, String text, String list, String url) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.type = type;
-		this.size = size;
-		this.text = text;
-		this.list = list;
-		this.url = url;
-	}
-	public Widget(String name, String type, String size, String text, String list, String url) {
-		super();
-		this.name = name;
-		this.type = type;
-		this.size = size;
-		this.text = text;
-		this.list = list;
-		this.url = url;
-	}
+	private String[] ltext;
 	public Widget(Integer id) {
 		super();
 		this.id = id;
+	}
+	public Widget(String name, String type, String size, String text, String list, String url, String[] ltext) {
+		super();
+		this.name = name;
+		this.type = type;
+		this.size = size;
+		this.text = text;
+		this.list = list;
+		this.url = url;
+		this.ltext = ltext;
+	}
+	public Widget(Integer id, String name, String type, String size, String text, String list, String url,
+			String[] ltext) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.type = type;
+		this.size = size;
+		this.text = text;
+		this.list = list;
+		this.url = url;
+		this.ltext = ltext;
 	}
 	public Integer getId() {
 		return id;
@@ -74,5 +78,11 @@ public class Widget {
 	}
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	public String[] getLtext() {
+		return ltext;
+	}
+	public void setLtext(String[] ltext) {
+		this.ltext = ltext;
 	}
 }
