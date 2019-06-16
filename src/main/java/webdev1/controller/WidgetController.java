@@ -62,6 +62,19 @@ public List<Widget> findAllWidgets(){
 	return widgets;
 }
 
+@GetMapping("/api/widgets/{widgetId}")
+public Widget findWidget(@PathVariable("widgetId")
+Integer widgetId){
+	System.out.println(
+			"getting widget: "+ widgetId);
+	Widget widget = null;
+    for (Widget w: widgets) {
+		if(w.getId().equals(widgetId))
+		{widget=w;}
+    }
+	return widget;
+}
+
 @DeleteMapping("/api/widgets/{widgetId}")
 public List<Widget> deleteWidgets(@PathVariable("widgetId")
 Integer widgetId)
