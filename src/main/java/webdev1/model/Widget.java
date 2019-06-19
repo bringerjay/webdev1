@@ -4,18 +4,27 @@ public class Widget {
 		super();
 	}
 	private Integer id;
+	private Type type;
 	private String name;
-	private String type;
 	private String size;
 	private String text;
 	private String list;
 	private String url;
 	private String[] ltext;
+	private Integer order;
+	private Integer width;
+	private Integer height;
+	private String cssClass;
+	private String style;
+
+	public enum Type {
+		Heading,List,Image,Link,Paragraph
+	}
 	public Widget(Integer id) {
 		super();
 		this.id = id;
 	}
-	public Widget(String name, String type, String size, String text, String list, String url, String[] ltext) {
+	public Widget(String name, Type type, String size, String text, String list, String url, String[] ltext) {
 		super();
 		this.name = name;
 		this.type = type;
@@ -25,7 +34,7 @@ public class Widget {
 		this.url = url;
 		this.ltext = ltext;
 	}
-	public Widget(Integer id, String name, String type, String size, String text, String list, String url,
+	public Widget(Integer id, String name, Type type, String size, String text, String list, String url,
 			String[] ltext) {
 		super();
 		this.id = id;
@@ -49,10 +58,10 @@ public class Widget {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getType() {
+	public Type getType() {
 		return type;
 	}
-	public void setType(String type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 	public String getSize() {
@@ -84,5 +93,35 @@ public class Widget {
 	}
 	public void setLtext(String[] ltext) {
 		this.ltext = ltext;
+	}
+	public Integer getOrder() {
+		return order;
+	}
+	public void setOrder(Integer order) {
+		this.order = order;
+	}
+	public Integer getWidth() {
+		return width;
+	}
+	public void setWidth(Integer width) {
+		this.width = width;
+	}
+	public Integer getHeight() {
+		return height;
+	}
+	public void setHeight(Integer height) {
+		this.height = height;
+	}
+	public String getCssClass() {
+		return cssClass;
+	}
+	public void setCssClass(String cssClass) {
+		this.cssClass = cssClass;
+	}
+	public String getStyle() {
+		return style;
+	}
+	public void setStyle(String style) {
+		this.style = style;
 	}
 }
