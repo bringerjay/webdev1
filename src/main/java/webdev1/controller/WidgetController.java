@@ -1,7 +1,9 @@
 package webdev1.controller;
 import java.util.ArrayList;
+import webdev1.repositories.*;
 import java.util.Arrays;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,45 +12,90 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import services.WidgetService;
 import webdev1.model.*;
+import webdev1.model.Module;
+import webdev1.services.*;
 @RestController
 @CrossOrigin("*")
 public class WidgetController{
-protected WidgetService widgetServiceInstance = WidgetService.getInstance();
-@PostMapping("/api/widgets")
-public List<Widget> createWidget(@RequestBody Widget widget){
+
+	@Autowired
+	TopicRepository topicRepository; 
+	@Autowired
+	WidgetRepository widgetRepository;
+	
+@PostMapping("/api/topics/{tId}/widgets")
+public Widget createWidgetForTopic(
+
+		@PathVariable("tId") Integer tId,
+		@RequestBody Widget widget)
+{
 	System.out.println("Controller received widget creation request");
-	List<Widget> widgets = widgetServiceInstance.createWidget(widget);
-	return widgets;
-}
-@GetMapping("/api/widgets")
-public List<Widget> findAllWidgets(){
-	System.out.println("Controller received getting all widgets");
-	List<Widget> widgets = widgetServiceInstance.findAllWidgets();
-	return widgets;
-}
-@GetMapping("/api/widgets/{widgetId}")
-public Widget findWidget(@PathVariable("widgetId")
-Integer widgetId){
-	System.out.println(
-			"Controller getting widget: "+ widgetId);
-	Widget widget = widgetServiceInstance.findWidget(widgetId);
+	Topic topic = topicRepository.findOne(tId);
+	if (topic == null)
+	{	
+		System.out.println("No topic found for the ID");
+    }
+	widget.setTopic(topic);
+	widgetRepository.save(widget);
 	return widget;
 }
-@DeleteMapping("/api/widgets/{widgetId}")
-public List<Widget> deleteWidgets(@PathVariable("widgetId")
-Integer widgetId)
+@GetMapping("/api/topics/{tId}/widgets")
+public List<Widget> findAllWidgetsForTopic(@PathVariable("tId") Integer tId)
+{
+	System.out.println("Controller received getting all widgets");
+	Topic topic = topicRepository.findOne(tId);
+	return topic.getWidgets();
+}
+@GetMapping("/api/widgets/{wId}")
+public Widget findWidget(@PathVariable("wId")
+Integer wId){
+	System.out.println(
+			"Controller getting widget: "+ wId);
+	return widgetRepository.findWidgetById(wId);
+}
+@PutMapping("/api/widgets/{wId}")
+public Widget UpdateWidget
+(
+		@PathVariable("wId") Integer wId,
+		@RequestBody Widget newWidget){
+	 System.out.println("processing request to update widget id : "+
+newWidget.getId());
+		Widget widget = widgetRepository.findWidgetById(wId);
+		widget = newWidget;
+	 return widget;
+}
+@DeleteMapping("/api/widgets/{wId}")
+public void deleteWidget(@PathVariable("wId")
+Integer wId)
 { 
-	System.out.println("Controller deleting widget: "+ widgetId);
-	widgetServiceInstance.deleteWidgets(widgetId);
-	List<Widget> widgets = widgetServiceInstance.findAllWidgets();
-				return widgets;}
-@PutMapping("/api/widgets")
+	System.out.println("Controller deleting widget: "+ wId);
+	widgetRepository.deleteById(wId);
+}
+@PutMapping("/api/topics/{tId}/widgets")
 public List<Widget> UpdateWidgets
-(@RequestBody ArrayList<Widget> previews){
-	 System.out.println("processing request "+Arrays.toString(previews.toArray()));
-		List<Widget> widgets = widgetServiceInstance.UpdateWidgets(previews);
-	return widgets;
+(
+		@PathVariable("tId") Integer tId,
+		@RequestBody ArrayList<Widget> previews){
+	 System.out.println("processing request to save all widgets "+
+Arrays.toString(previews.toArray()));
+		Topic topic = topicRepository.findOne(tId);
+	    for (Widget p: previews) {
+        Widget widget = widgetRepository.findWidgetById(p.getId());
+        widget.setCssClass(p.getCssClass());
+        widget.setHeight(p.getHeight());
+        widget.setList(p.getList());
+        widget.setLtext((p.getLtext()));
+        widget.setName(p.getName());
+        widget.setOrder(p.getOrder());
+        widget.setSize(p.getSize());
+        widget.setStyle(p.getStyle());
+        widget.setText(p.getText());
+        widget.setType(p.getType());
+        widget.setUrl(p.getUrl());
+        widget.setWidth(p.getWidth());
+	    widgetRepository.save(widget);
+	    }
+	 return topic.getWidgets();
 	}
 	}

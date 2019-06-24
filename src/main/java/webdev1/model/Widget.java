@@ -1,8 +1,22 @@
 package webdev1.model;
+import javax.persistence.Entity;
+import javax.persistence.CascadeType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+@Entity
+@Table(name="widgets")
 public class Widget {
 	public Widget() {
 		super();
 	}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Type type;
 	private String name;
@@ -11,18 +25,46 @@ public class Widget {
 	private String list;
 	private String url;
 	private String[] ltext;
-	private Integer order;
+	private Integer queueOrder;
 	private Integer width;
 	private Integer height;
 	private String cssClass;
 	private String style;
-
+	@ManyToOne(cascade = {CascadeType.PERSIST,
+			CascadeType.DETACH,
+			CascadeType.REFRESH})
+    @JsonIgnore
+    private Topic topic;
+	@Transient
+    public Integer getTopicId() {
+    if (this.topic != null)
+		{return topic.getId();}
+    else return null;
+    }
 	public enum Type {
 		Heading,List,Image,Link,Paragraph
 	}
 	public Widget(Integer id) {
 		super();
 		this.id = id;
+	}
+	public Widget(Integer id, Type type, String name, String size, String text, String list, String url, String[] ltext,
+			Integer queueOrder, Integer width, Integer height, String cssClass, String style, Topic topic) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.name = name;
+		this.size = size;
+		this.text = text;
+		this.list = list;
+		this.url = url;
+		this.ltext = ltext;
+		this.queueOrder = queueOrder;
+		this.width = width;
+		this.height = height;
+		this.cssClass = cssClass;
+		this.style = style;
+		this.topic = topic;
 	}
 	public Widget(String name, Type type, String size, String text, String list, String url, String[] ltext) {
 		super();
@@ -95,10 +137,10 @@ public class Widget {
 		this.ltext = ltext;
 	}
 	public Integer getOrder() {
-		return order;
+		return queueOrder;
 	}
-	public void setOrder(Integer order) {
-		this.order = order;
+	public void setOrder(Integer queueOrder) {
+		this.queueOrder = queueOrder;
 	}
 	public Integer getWidth() {
 		return width;
@@ -123,5 +165,19 @@ public class Widget {
 	}
 	public void setStyle(String style) {
 		this.style = style;
+	}
+	public Topic getTopic() {
+		return topic;
+	}
+	public void setTopic(Topic topic) {
+		this.topic = topic;
+		if (topic.getWidgets()==null)
+		{
+			topic.addWidget(this);
+		}
+		if(!topic.getWidgets().contains(this)) 
+		{
+			topic.getWidgets().add(this); 
+		}
 	}
 }

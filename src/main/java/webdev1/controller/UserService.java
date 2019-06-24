@@ -9,12 +9,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 import javax.servlet.http.HttpSession;
+import webdev1.repositories.*;
+import webdev1.services.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 @RestController
 public class UserService{
 	static int latestId = 7;
@@ -43,20 +47,13 @@ public class UserService{
 	 date5 = format.parse("10/10/1989");
 	 date6 = format.parse("10/10/1989");
 	 date7 = format.parse("10/10/1989");
-	webdev1.model.User.Role role1 = webdev1.model.User.Role.valueOf("Faculty");
-	webdev1.model.User.Role role2 = webdev1.model.User.Role.valueOf("Student");
-	webdev1.model.User.Role role3 = webdev1.model.User.Role.valueOf("Faculty");
-	webdev1.model.User.Role role4 = webdev1.model.User.Role.valueOf("Student");
-	webdev1.model.User.Role role5 = webdev1.model.User.Role.valueOf("Faculty");
-	webdev1.model.User.Role role6 = webdev1.model.User.Role.valueOf("Faculty");
-	webdev1.model.User.Role role7 = webdev1.model.User.Role.valueOf("Admin");	
-	User alice = new User(1, "alice", "rabit", "Alice", "Wonderland",role1,date1,list1);
-	User bob   = new User(2, "bob", "love", "Bob", "abcd",role2,date2,list2);
-	User lee   = new User(3, "lee", "love", "Lee", "bcde",role3,date3,list3);
-	User lin   = new User(4, "lin", "love", "Lin", "cdeg",role4,date4,list4);
-	User chris   = new User(5, "chris", "love", "Chris", "hijk",role5,date5,list5);
-	User xiao   = new User(6, "xiao", "love", "Xiao", "hello",role6,date6,list6);
-	User rob   = new User(7, "rob", "love", "Rob", "kitty",role7,date7,list7);
+	User alice = new User(1, "alice", "rabit", "Alice", "Wonderland",date1);
+	User bob   = new User(2, "bob", "love", "Bob", "abcd",date2);
+	User lee   = new User(3, "lee", "love", "Lee", "bcde",date3);
+	User lin   = new User(4, "lin", "love", "Lin", "cdeg",date4);
+	User chris   = new User(5, "chris", "love", "Chris", "hijk",date5);
+	User xiao   = new User(6, "xiao", "love", "Xiao", "hello",date6);
+	User rob   = new User(7, "rob", "love", "Rob", "kitty",date7);
 	users.add(alice);
     users.add(bob);
     users.add(lee);
@@ -69,10 +66,11 @@ public class UserService{
 	}
 	finally {}    }
     int check;
-	     
+    @Autowired
+    UserRepository userRepository;    
 	@GetMapping("/api/users")
 	public List<User> findAllUsers(){
-		return users;
+		  return (List<User>) userRepository.findAll();
 	}
 	@PostMapping("/api/users")
 	public List<User> createUser(@RequestBody User user){
@@ -90,7 +88,7 @@ public class UserService{
 		else{
 	    latestId++;
 		user.setId(latestId);
-		String r1 = "STUDENT";
+		/**String r1 = "STUDENT";
 		String r2 = "FACULTY";
 		String r3 = "ADMIN";
 		webdev1.model.User.Role role1 = webdev1.model.User.Role.valueOf("Student");
@@ -100,7 +98,7 @@ public class UserService{
         {user.setRole(role1);}
         else if(user.getRole().toString().equals(r2))
         {user.setRole(role2);}
-        else {user.setRole(role3);}
+        else {user.setRole(role3);}**/
 		users.add(user);
 		return users;}
 	}
