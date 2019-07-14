@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import webdev1.model.*;
 import webdev1.model.Module;
-import webdev1.services.*;
 @RestController
 @CrossOrigin("*")
 public class ModuleController {
@@ -70,7 +69,7 @@ public Module updateModule(
 }
 
 @GetMapping("/api/courses/{cId}/modules")
-public List<Module> findAllModulesForCourse(@PathVariable("cId") int cId) {
+public List<Module> findAllModulesForCourse(@PathVariable("cId") Integer cId) {
 	System.out.println("Controller received getting all modules for course " + cId);
 	Course course   = courseRepository.findOne(cId);
 	return course.getModules();

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import webdev1.model.Course;
 import webdev1.model.Faculty;
 import webdev1.repositories.*;
-import webdev1.services.*;
 @RestController
 @CrossOrigin("*")
 public class CourseController {

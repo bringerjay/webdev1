@@ -1,5 +1,6 @@
 package webdev1.controller;
 import java.util.ArrayList;
+
 import webdev1.repositories.*;
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import webdev1.model.*;
 import webdev1.model.Module;
-import webdev1.services.*;
 @RestController
 @CrossOrigin("*")
 public class WidgetController{
@@ -40,8 +40,15 @@ public Widget createWidgetForTopic(
 	widgetRepository.save(widget);
 	return widget;
 }
+@GetMapping("/api/widgets")
+public List<Widget> findAllWidgets()
+{
+	System.out.println("Controller received getting all widgets");
+	return widgetRepository.findAllWidgets();
+}
+
 @GetMapping("/api/topics/{tId}/widgets")
-public List<Widget> findAllWidgetsForTopic(@PathVariable("tId") Integer tId)
+public List<Widget> findWidgetsForTopic(@PathVariable("tId") Integer tId)
 {
 	System.out.println("Controller received getting all widgets");
 	Topic topic = topicRepository.findOne(tId);

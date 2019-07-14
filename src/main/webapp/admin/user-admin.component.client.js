@@ -7,8 +7,15 @@
     var body
     var table
     var row
+    var p
     $(main);
     function main() {
+        $("p").click(alert("Click"));
+        $("p").click(function(){ alert("Click"); });
+
+
+
+
         $usernameFld = $("#usernameFld");
         $passwordFld = $("#passwordFld");
         $firstNameFld = $("#firstNameFld");
