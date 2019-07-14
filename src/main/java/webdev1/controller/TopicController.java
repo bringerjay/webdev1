@@ -1,7 +1,7 @@
 package webdev1.controller;
-import java.util.ArrayList;
 import webdev1.repositories.*;
-import java.util.Arrays;
+import webdev1.services.LessonService;
+import webdev1.services.TopicService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,27 +13,26 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import webdev1.model.*;
-import webdev1.model.Module;
 @RestController
 @CrossOrigin("*")
 public class TopicController {
 	@Autowired
-	TopicRepository topicRepository; 
+	TopicService topicService; 
 	@Autowired
-	LessonRepository lessonRepository; 
+	LessonService lessonService; 
 	
 	@PostMapping("/api/lessons/{lid}/topics") 
 	public Topic createTopicForLesson (
 			@PathVariable("lid") Integer lid,
 			@RequestBody Topic topic) 
 	{
-		Lesson lesson = lessonRepository.findOne(lid);
+		Lesson lesson = lessonService.findOne(lid);
 		if (lesson == null)
 		{	
 			System.out.println("No lesson found for the ID");
 	    }
 		topic.setLesson(lesson);
-		topicRepository.save(topic);
+		topicService.save(topic);
 		return topic;
 	}
 
@@ -42,16 +41,16 @@ public class TopicController {
 		@PathVariable("tId") int tId,
 		@PathVariable("lId") int lId) 
 	    {
-		Topic topic = topicRepository.findOne(tId);
-		Lesson lesson = lessonRepository.findOne(lId);
+		Topic topic = topicService.findOne(tId);
+		Lesson lesson = lessonService.findOne(lId);
 		topic.setLesson(lesson);
-		topicRepository.save(topic);
+		topicService.save(topic);
 	    }
 
 	@DeleteMapping("/api/topics/{tId}")
 	public void deleteTopic(@PathVariable("tId") Integer id) {
 		System.out.println("Controller deleting topic: "+ id);
-		topicRepository.deleteById(id);
+		topicService.deleteById(id);
 	    }
 
 	@PutMapping("/api/topics/{tId}")
@@ -60,16 +59,16 @@ public class TopicController {
 			@RequestBody Topic newTopic)
 	{
 		System.out.println("Controller updating topic: "+ id);
-		Topic topic = topicRepository.findOne(id);
+		Topic topic = topicService.findOne(id);
 		topic.setTitle(newTopic.getTitle());
-		topicRepository.save(topic);
+		topicService.save(topic);
 		return topic;
 	}
 	@GetMapping("/api/topics")
 	public List<Topic> findAllTopics() 
 	{
 		System.out.println("Controller received getting all topics");
-		return topicRepository.findAllTopics();
+		return topicService.findAllTopics();
 		}
 	
 	@GetMapping("/api/lessons/{lid}/topics")
@@ -77,7 +76,7 @@ public class TopicController {
 	{
 		System.out.println("Controller received getting all topics for lesson "
 	    + lId);
-		Lesson lesson = lessonRepository.findOne(lId);
+		Lesson lesson = lessonService.findOne(lId);
 		return lesson.getTopics();
 		}
 
@@ -85,6 +84,6 @@ public class TopicController {
 	public Topic findTopicById(
 	    @PathVariable("tId") Integer id) {
 		System.out.println("Controller received finding topic " + id);
-		return topicRepository.findOne(id);
+		return topicService.findOne(id);
 	}
 }

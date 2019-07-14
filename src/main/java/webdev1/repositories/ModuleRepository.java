@@ -8,7 +8,7 @@ public interface ModuleRepository extends
 CrudRepository<Module, Integer>
 {
 	@Query("select module from Module module")
-    public List<Module> findAllCourses();
+    public List<Module> findAllModules();
 
     @Query("select module from Module module where module.id=:mid")
     public Module findOne(@Param("mid") Integer mid);

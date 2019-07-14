@@ -1,7 +1,7 @@
 package webdev1.controller;
-import java.util.ArrayList;
 import webdev1.repositories.*;
-import java.util.Arrays;
+import webdev1.services.LessonService;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,7 +20,7 @@ public class LessonController {
 	@Autowired
 	ModuleRepository moduleRepository; 
 	@Autowired
-	LessonRepository lessonRepository; 
+	LessonService lessonService; 
 	
 	@PostMapping("/api/modules/{mid}/lessons") 
 	public Lesson createLessonForModule (
@@ -33,7 +33,7 @@ public class LessonController {
 			System.out.println("No module found for the ID");
 	    }
 		lesson.setModule(module);
-		lessonRepository.save(lesson);
+		lessonService.save(lesson);
 		return lesson;
 	}
 
@@ -43,15 +43,15 @@ public class LessonController {
 		@PathVariable("lId") int lId) 
 	    {
 		Module module = moduleRepository.findOne(mId);
-		Lesson lesson = lessonRepository.findOne(lId);
+		Lesson lesson = lessonService.findOne(lId);
 		lesson.setModule(module);
-		lessonRepository.save(lesson);
+		lessonService.save(lesson);
 	    }
 
 	@DeleteMapping("/api/lessons/{lId}")
 	public void deleteLesson(@PathVariable("lId") Integer id) {
 		System.out.println("Controller deleting lesson: "+ id);
-		lessonRepository.deleteById(id);
+		lessonService.deleteById(id);
 	    }
 
 	@PutMapping("/api/lessons/{lId}")
@@ -60,16 +60,16 @@ public class LessonController {
 			@RequestBody Lesson newLesson)
 	{
 		System.out.println("Controller updating module: "+ id);
-		Lesson lesson = lessonRepository.findOne(id);
+		Lesson lesson = lessonService.findOne(id);
 		lesson.setTitle(newLesson.getTitle());
-		lessonRepository.save(lesson);
+		lessonService.save(lesson);
 		return lesson;
 	}
 	@GetMapping("/api/lessons")
 	public List<Lesson> findAllLessons() 
 	{
 		System.out.println("Controller received getting all lessons");
-		return lessonRepository.findAllLessons();
+		return lessonService.findAllLessons();
 		}
 	
 	@GetMapping("/api/modules/{mId}/lessons")
@@ -85,6 +85,6 @@ public class LessonController {
 	public Lesson findLessonById(
 	    @PathVariable("lId") Integer id) {
 		System.out.println("Controller received finding lesson " + id);
-		return lessonRepository.findOne(id);
+		return lessonService.findOne(id);
 	}
 }

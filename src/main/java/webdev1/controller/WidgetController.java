@@ -13,16 +13,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import webdev1.services.*;
 import webdev1.model.*;
-import webdev1.model.Module;
 @RestController
 @CrossOrigin("*")
 public class WidgetController{
-
+    @Autowired
+    WidgetService widgetService;
 	@Autowired
-	TopicRepository topicRepository; 
-	@Autowired
-	WidgetRepository widgetRepository;
+	TopicService topicService; 
 	
 @PostMapping("/api/topics/{tId}/widgets")
 public Widget createWidgetForTopic(
@@ -31,27 +31,27 @@ public Widget createWidgetForTopic(
 		@RequestBody Widget widget)
 {
 	System.out.println("Controller received widget creation request");
-	Topic topic = topicRepository.findOne(tId);
+	Topic topic = topicService.findOne(tId);
 	if (topic == null)
 	{	
 		System.out.println("No topic found for the ID");
     }
 	widget.setTopic(topic);
-	widgetRepository.save(widget);
+	widgetService.save(widget);
 	return widget;
 }
 @GetMapping("/api/widgets")
 public List<Widget> findAllWidgets()
 {
 	System.out.println("Controller received getting all widgets");
-	return widgetRepository.findAllWidgets();
+	return widgetService.findAllWidgets();
 }
 
 @GetMapping("/api/topics/{tId}/widgets")
 public List<Widget> findWidgetsForTopic(@PathVariable("tId") Integer tId)
 {
 	System.out.println("Controller received getting all widgets");
-	Topic topic = topicRepository.findOne(tId);
+	Topic topic = topicService.findOne(tId);
 	return topic.getWidgets();
 }
 @GetMapping("/api/widgets/{wId}")
@@ -59,7 +59,7 @@ public Widget findWidget(@PathVariable("wId")
 Integer wId){
 	System.out.println(
 			"Controller getting widget: "+ wId);
-	return widgetRepository.findWidgetById(wId);
+	return widgetService.findWidgetById(wId);
 }
 @PutMapping("/api/widgets/{wId}")
 public Widget UpdateWidget
@@ -68,7 +68,7 @@ public Widget UpdateWidget
 		@RequestBody Widget newWidget){
 	 System.out.println("processing request to update widget id : "+
 newWidget.getId());
-		Widget widget = widgetRepository.findWidgetById(wId);
+		Widget widget = widgetService.findWidgetById(wId);
 		widget = newWidget;
 	 return widget;
 }
@@ -77,7 +77,7 @@ public void deleteWidget(@PathVariable("wId")
 Integer wId)
 { 
 	System.out.println("Controller deleting widget: "+ wId);
-	widgetRepository.deleteById(wId);
+	widgetService.deleteById(wId);
 }
 @PutMapping("/api/topics/{tId}/widgets")
 public List<Widget> UpdateWidgets
@@ -86,9 +86,9 @@ public List<Widget> UpdateWidgets
 		@RequestBody ArrayList<Widget> previews){
 	 System.out.println("processing request to save all widgets "+
 Arrays.toString(previews.toArray()));
-		Topic topic = topicRepository.findOne(tId);
+		Topic topic = topicService.findOne(tId);
 	    for (Widget p: previews) {
-        Widget widget = widgetRepository.findWidgetById(p.getId());
+        Widget widget = widgetService.findWidgetById(p.getId());
         widget.setCssClass(p.getCssClass());
         widget.setHeight(p.getHeight());
         widget.setList(p.getList());
@@ -101,7 +101,7 @@ Arrays.toString(previews.toArray()));
         widget.setType(p.getType());
         widget.setUrl(p.getUrl());
         widget.setWidth(p.getWidth());
-	    widgetRepository.save(widget);
+        widgetService.save(widget);
 	    }
 	 return topic.getWidgets();
 	}
